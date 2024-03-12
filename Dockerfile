@@ -12,6 +12,7 @@ RUN yarn build
 FROM nginx:mainline-alpine3.18-perl as prod
 EXPOSE 80
 COPY --from=builder /app/dist /usr/share/nginx/html
+COPY assets/ /usr/share/nginx/html/assets
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx/nginx.conf /etc/nginx/conf.d
 
